@@ -57,7 +57,7 @@ export DOCKER=false
 export HEADLESS=false
 mvn clean test
 ```
-#### b) Local execution with UI
+#### b) Local execution without UI (headless)
 Here the tests will run on headless mode where Google Chrome browser will launch.    
 You cannot see the execution real time as its running in the memory.   
 ```
