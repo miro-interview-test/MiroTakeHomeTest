@@ -27,21 +27,9 @@ public class Utilities {
         return prop;
     }
 
-    public static void hitEscapeKey(WebDriver driver) {
-        Actions action = new Actions(driver);
-        action.sendKeys(Keys.ESCAPE).build().perform();
-    }
-
     public static void rightClick(WebDriver driver, WebElement element) {
         Actions action = new Actions(driver);
         action.contextClick(element).perform();
-    }
-
-    public static void takeScreesnhot(WebDriver driver, String filenname) throws IOException {
-        String projectPath = System.getProperty("user.dir");
-        String newFilePath = projectPath+"/src/test/resources/screenshots/"+filenname+".png";
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        Files.copy(screenshotFile.toPath(), new File(newFilePath).toPath());
     }
 
     public static void takeElementScreenshot(WebDriver driver, WebElement element, String filenname) throws IOException {

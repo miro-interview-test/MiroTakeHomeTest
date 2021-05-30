@@ -92,6 +92,8 @@ This is completely optional and tests can run without it too.
 
 **Note: There are other 3rd party cucumber reporting libraries which can be used depending on which give the tech and product team better readability and faster debugging, improving overall efficiency.**     
 
-
+### c) Screenshots    
+Apart from reports, the original screenshots that are taken to compare can be found in resources/screenshots folder.    
+These are deleted before each run for a fresh pair to be created.    
     
 

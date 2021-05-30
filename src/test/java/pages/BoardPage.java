@@ -14,11 +14,12 @@ public class BoardPage {
 
     // Title Elements
     private WebElement boardTitle() { return driver.findElement(By.className("board-top-left-panel__title")); }
-    private WebElement titleField() { return driver.findElement(By.cssSelector("[data-auto-test-id=\"board-info-modal-title\"]")); }
     private List<WebElement> notificationCloseButtons() { return driver.findElements(By.className("notification__close")); }
 
     // Share Elements
     private WebElement boardShareButton() { return driver.findElement(By.cssSelector("[data-autotest-id='board__share-button--desktop']")); }
+    private WebElement renameBoardInput() { return driver.findElement(By.cssSelector("[data-autotest-id=\"rename-board-modal__name-input\"]")); }
+    private WebElement renameBoardSaveButton() { return driver.findElement(By.cssSelector("[data-autotest-id=\"rename-board-modal__submit-button\"]")); }
     private WebElement teamShareButton() { return driver.findElement(By.cssSelector("[data-auto-test-id=\"shareMdButtonTeamContacts\"]")); }
     private WebElement teamMemberName() { return driver.findElement(By.className("filterable-list__item")); }
     private WebElement teamMemberChooseButton() { return driver.findElement(By.id("inviteFromTeamMdButtonChoose")); }
@@ -31,19 +32,16 @@ public class BoardPage {
     private WebElement mainBodyElement() { return driver.findElement(By.tagName("body")); }
     private WebElement toolbarZoomResetTo100() { return driver.findElement(By.className("mini-map__value")); }
     private WebElement boardCanvas() { return driver.findElement(By.cssSelector("#pixiCanvasContainer canvas")); }
-    private WebElement toastNotification() { return driver.findElement(By.cssSelector("[data-autotest-id=\"feed-toast\"]")); }
+
 
     public void renameBoardTo(String boardName) {
-        boardTitle().click(); // Click on board title to edit
-        titleField().clear(); // Using Javascript workaround as normal clear method doesn't seem to be working on this field
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.getElementsByClassName(\"board-info-title\")[0].value=\"\"");
-        titleField().sendKeys(boardName); // Enter new title
-        Utilities.hitEscapeKey(driver); // Dismiss the edit title as its auto save
+        boardShareButton().click(); // Click Share button
+        renameBoardInput().clear(); // On rename popup, clear the field
+        renameBoardInput().sendKeys(boardName); // Enter new name
+        renameBoardSaveButton().click(); // Click Save button
     }
 
     public void shareBoardWithUser2() {
-        boardShareButton().click(); // Click on share board
         teamShareButton().click(); // Click on the share with team
         teamMemberName().click(); // Click on the pre-added user2 in team
         teamMemberChooseButton().click(); // Confirm choice of choosing team member
